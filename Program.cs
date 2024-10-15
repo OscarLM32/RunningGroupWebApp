@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RunningGroupWebApp.Data;
 using RunningGroupWebApp.Helpers;
 using RunningGroupWebApp.Interfaces;
+using RunningGroupWebApp.Models;
 using RunningGroupWebApp.Repositories;
 using RunningGroupWebApp.Services;
 
@@ -20,6 +23,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseSqlServer(connString);
 });
 
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+				.AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+				.AddCookie();
+				
+
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
@@ -30,7 +41,7 @@ var app = builder.Build();
 
 if(args.Length == 1 && args[0]== "seeddata")
 {
-	Seed.SeedData(app);
+	await Seed.SeedUsersAndRolesAsync(app);
 }
 
 // Configure the HTTP request pipeline.
