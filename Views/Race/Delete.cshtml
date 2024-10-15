@@ -1,0 +1,48 @@
+@using RunningGroupWebApp.Data.Enum
+@using RunningGroupWebApp.ViewModels
+@model Race
+
+<form method="post" asp-action="DeleteRace" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input readonly asp-for="Title" type="text" class="form-control" placeholder="Enter title" value="@Model.Title">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <input readonly asp-for="Description" type="text" class="form-control" placeholder="Description"
+            value="@Model.Description">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address.Street">Street</label>
+        <input readonly asp-for="Address.Street" type="text" class="form-control" placeholder="Street"
+            value="@Model.Address.Street">
+    </div>
+    <div class="form-group">
+        <label asp-for="Address.City">City</label>
+        <input readonly asp-for="Address.City" type="text" class="form-control" placeholder="City"
+            value="@Model.Address.City">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address.State">State</label>
+        <input readonly asp-for="Address.State" type="text" class="form-control" placeholder="State"
+            value="@Model.Address.State">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RaceCategory">Category</label>
+        <input readonly asp-for="RaceCategory" value="@Model.RaceCategory" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Image">Image</label>
+        <input readonly asp-for="Image" type="text" class="form-control" placeholder="Image link" value="@Model.Image">
+    </div>
+
+    <input readonly type="hidden" asp-for="Id"/>
+    <span class="text-danger">Are you sure you want to delete this race?<br></span>
+    <button type="submit" class="btn btn-danger">Confirm</button>
+</form>
