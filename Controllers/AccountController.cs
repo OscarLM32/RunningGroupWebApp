@@ -56,4 +56,55 @@ public class AccountController : Controller
 		//Sign in worked
 		return RedirectToAction("Index", "Home");
 	}
+	
+	
+	public async Task<IActionResult> Register()
+	{
+		var response = new VMRegister();
+		return View(response);
+	}
+	
+	[HttpPost]
+	public async Task<IActionResult> Register(VMRegister registerUser)
+	{
+		if(!ModelState.IsValid) return View(registerUser);
+		
+		var user = await _userManager.FindByEmailAsync(registerUser.Email);
+		if(user != null)
+		{
+			ModelState.AddModelError("UserFound", "There already exists a user with that email address registered");
+			return View(registerUser);
+		}
+		
+		AppUser newUser = new()
+		{
+			Email = registerUser.Email,
+			UserName = registerUser.Email,
+			
+		};
+		var newUserResponse = await _userManager.CreateAsync(newUser, registerUser.Password);
+		if(!newUserResponse.Succeeded)
+		{
+			ModelState.AddModelError("Error", "Something went wrong trying to create the new user. Try it again later");
+			return View(registerUser);
+		}
+		
+		await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+		
+		var loginInfo = new VMLogin()
+		{
+			Email = newUser.Email,
+			Password = registerUser.Password
+		};
+		Login(loginInfo);
+		
+		return RedirectToAction("Index", "Home");
+	}
+	
+	[HttpPost]
+	public async Task<IActionResult> Logout()
+	{
+		await _signInManager.SignOutAsync();
+		return RedirectToAction("Index", "Home");
+	}
 }
