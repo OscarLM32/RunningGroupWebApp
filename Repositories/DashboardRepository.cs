@@ -1,4 +1,5 @@
 using RunningGroupWebApp.Data;
+using RunningGroupWebApp.Helpers.Extensions;
 using RunningGroupWebApp.Interfaces;
 using RunningGroupWebApp.Models;
 
@@ -17,15 +18,15 @@ public class DashboardRepository : IDashboardRepository
 	
 	public async Task<List<Club>> GetAllUserClubs()
 	{
-		var currentUser = _httpContextAccessor.HttpContext?.User;
-		var userClubs = _dbContext.Clubs.Where(c => c.AppUserId == currentUser.ToString());
+		var currentUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+		var userClubs = _dbContext.Clubs.Where(c => c.AppUserId == currentUser);
 		return userClubs.ToList();
 	}
 
 	public async Task<List<Race>> GetAllUserRaces()
 	{
-		var currentUser = _httpContextAccessor.HttpContext?.User;
-		var userRaces = _dbContext.Races.Where(r => r.AppUserId == currentUser.ToString());
+		var currentUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+		var userRaces = _dbContext.Races.Where(r => r.AppUserId == currentUser);
 		return userRaces.ToList();
 	}
 }
