@@ -1,4 +1,5 @@
 
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Mvc;
 using RunningGroupWebApp.Repositories;
 using RunningGroupWebApp.ViewModels;
@@ -36,6 +37,20 @@ public class UserController : Controller
 	
 	public async Task<IActionResult> Detail(string id)
 	{
-		var user = _userRepository.GetUserById(id);
+		var user = await _userRepository.GetUserById(id);
+		if(user == null)
+		{
+			return RedirectToAction("Index");
+		}
+		
+		var userDetails = new VMUserDetails()
+		{
+			Id = user.Id,
+			UserName = user.UserName,
+			Pace = user.Pace,
+			Mileage = user.Mileage
+		};
+		
+		return View(userDetails);
 	}
 }
