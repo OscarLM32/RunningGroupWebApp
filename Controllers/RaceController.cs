@@ -1,4 +1,4 @@
-
+ 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RunningGroupWebApp.Data;
@@ -12,11 +12,13 @@ namespace RunningGroupWebApp.Controllers
 	{
 		private readonly IRaceRepository _repository;
 		private readonly IPhotoService _photoService;
+		private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public RaceController(IRaceRepository repository, IPhotoService photoService)
+		public RaceController(IRaceRepository repository, IPhotoService photoService, IHttpContextAccessor contextAccessor)
 		{
 			_repository = repository;
 			_photoService = photoService;
+			_httpContextAccessor = contextAccessor;
 		}
 
 		public async Task<IActionResult> Index()
@@ -33,7 +35,12 @@ namespace RunningGroupWebApp.Controllers
 		
 		public IActionResult Create()
 		{
-			return View();
+			var currentUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+			VMCreateRace createRace = new()
+			{
+				AppUserId = currentUserId
+			};
+			return View(createRace);
 		}
 		
 		[HttpPost]
@@ -57,7 +64,8 @@ namespace RunningGroupWebApp.Controllers
 					Street = createRace.Address.Street,
 					City = createRace.Address.City,
 					State = createRace.Address.State
-				}
+				},
+				AppUserId = createRace.AppUserId
 			};
 			_repository.Add(race);
 			return RedirectToAction("Index");

@@ -3,6 +3,9 @@
 @using RunningGroupWebApp.ViewModels;
 
 <form method="post" asp-action="Create" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="AppUserId" id="AppUserId" />
+
     <div class="form-group">
         <label asp-for="Title">Title</label>
         <input asp-for="Title" type="text" class="form-control" placeholder="Enter title">
