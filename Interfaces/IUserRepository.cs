@@ -7,6 +7,7 @@ public interface IUserRepository
 {
 	Task<IEnumerable<AppUser>> GetAllUser();
 	Task<AppUser> GetUserById(string id);
+	Task<AppUser> GetUserNoTrackingById(string id);
 	
 	bool Add(AppUser user);
 	bool Delete(AppUser user);

@@ -24,6 +24,11 @@ public class UserRepository : IUserRepository
 		return await _dbContext.Users.FindAsync(id);
 	}
 
+    public async Task<AppUser> GetUserNoTrackingById(string id)
+    {
+        return await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
+    }
+
 
 	public bool Add(AppUser user)
 	{
@@ -46,5 +51,4 @@ public class UserRepository : IUserRepository
 		var saved = _dbContext.SaveChanges();
 		return saved > 0;
 	}
-
 }
