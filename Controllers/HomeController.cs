@@ -30,7 +30,7 @@ public class HomeController : Controller
 		
 		try
 		{
-			string url = "https://ipinfo.io?token=";
+			string url = "https://ipinfo.io";
 			var info = await new HttpClient().GetStringAsync(url);	
 			ipInfo = JsonConvert.DeserializeObject<IpInfo>(info);
 			RegionInfo myRegionInfo = new RegionInfo(ipInfo.Country);
