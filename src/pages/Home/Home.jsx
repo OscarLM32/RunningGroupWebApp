@@ -1,6 +1,6 @@
-import "./Main.css"
+import "./Home.css"
 
-export default function Main(){
+export default function Home(){
     return(
         <div className="fun-facts-container">
             <h1 className="fun-facts-title">Fun facts about React!</h1>
