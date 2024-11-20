@@ -2,7 +2,7 @@
 
 function Hero(){
     return (
-        <section class="py-5 text-center container-fluid bg-dark text-light">
+        <div class="py-5 text-center stretch bg-dark text-light rounded-3 m-1">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light">Welcome to RunTogether</h1>
@@ -15,7 +15,8 @@ function Hero(){
                     </p>
                 </div>
             </div>
-        </section>
+        </div>
+
     )
 }
 

@@ -1,7 +1,7 @@
 
 function Footer(){
     return (
-        <footer className="py-3 bg-dark text-bg-dark">
+        <footer className="py-3 bg-dark text-bg-dark rounded m-1">
             <div className="container d-flex flex-wrap justify-content-between align-items-center">
                 <p className="col-md-4 mb-0">&copy; 2024 Company, Inc</p>
 
