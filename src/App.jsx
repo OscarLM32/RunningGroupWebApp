@@ -1,5 +1,5 @@
 import Navbar from "./components/navbar/navbar"
-import Main from "./components/Main/Main"
+import Main from "./components/Home/Home"
 import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./app.css"
