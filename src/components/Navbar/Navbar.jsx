@@ -1,5 +1,3 @@
-import reacLogo from "../../../images/react.svg"
-import "./navbar.css"
 
 export default function Navbar() {
     return (
