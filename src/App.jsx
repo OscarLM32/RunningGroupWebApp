@@ -1,5 +1,5 @@
 import Navbar from "./components/navbar/navbar"
-import Main from "./components/Home/Home"
+import Home from "./pages/Home/Home"
 import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./app.css"
@@ -8,7 +8,7 @@ export default function App (){
     return(
         <div>
             <Navbar />
-            <Main />
+            <Home />
             <Footer />
         </div>
     )
