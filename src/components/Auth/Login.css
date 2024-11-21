@@ -1,0 +1,60 @@
+.auth-page {
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.auth-image {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    background: url('../../../images/Login-bg.jpg') no-repeat center center;
+    background-size: cover;
+    clip-path: polygon(0 0, 90% 0, 60% 100%, 0 100%);
+}
+
+.auth-image::before {
+    content: '';
+    /* Empty content */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    /* Dark overlay (black with 40% opacity) */
+    z-index: 1;
+    /* Make sure the overlay appears above the image */
+}
+
+.auth-image-text{
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-left: -20%;
+    margin-top: 25%;
+}
+
+.auth-content {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 2rem;
+}
+
+.auth-form-container {
+    position: relative;
+    width: 30%;
+    margin-left: auto;
+    margin-right: 5%;
+    z-index: 1;
+    padding: 2rem;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,7 +1,10 @@
+import Login from "../../components/Auth/Login";
 
 function Authentication(){
     return (
-        <h1>In Authentication!</h1>
+        <div>
+            <Login />
+        </div>
     )
 }
 
