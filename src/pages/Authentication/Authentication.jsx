@@ -1,6 +1,8 @@
 
 function Authentication(){
-    reteurn (
+    return (
         <h1>In Authentication!</h1>
     )
 }
+
+export default Authentication;
