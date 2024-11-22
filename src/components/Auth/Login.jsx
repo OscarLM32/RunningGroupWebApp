@@ -14,7 +14,6 @@ function Login(){
                 />
             </div>
 
-            {/* Right Side: Login Form */}
             <div className='auth-content bg-dark'>
                 <div className="auth-form-container rounded">
                     <h2 className="mb-4 text-center">Login</h2>
@@ -42,7 +41,7 @@ function Login(){
                         <button type="submit" className="btn btn-primary w-100">Login</button>
                     </form>
                     <p className="mt-3 text-center">
-                        Don't have an account? <Link to="/register">Register</Link>
+                        Don't have an account? <Link to="/auth/register">Register</Link>
                     </p>
                 </div>
             </div>

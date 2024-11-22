@@ -4,7 +4,7 @@ import "./SharedAuth.css"
 function Register() {
     return (
         <div className="auth-page d-flex rounded m-1">
-            {/* Left Side: Image */}
+
             <div className="auth-image-container rounded">
                 <AuthImage 
                     imageName="Register-bg.jpg"
