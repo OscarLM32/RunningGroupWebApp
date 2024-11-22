@@ -6,7 +6,9 @@ function Login(){
     return (
         <div className="auth-page d-flex rounded m-1">
             {/* Left Side: Image */}
-            <div className="auth-image rounded p-1">
+            <div className="auth-image-container rounded">
+                <img className='auth-image rounded' src='../../../images/Login-bg.jpg' />
+                <div className="auth-image-overlay"></div>
                 <div className='auth-image-text'>
                     <h1 className="text-light">Welcome Back!</h1>
                     <p className="text-light text-secondary fs-4">Login to continue your journey.</p>
@@ -16,7 +18,7 @@ function Login(){
             {/* Right Side: Login Form */}
             <div className='auth-content bg-dark'>
                 <div className="auth-form-container rounded">
-                    <h2 className="mb-4">Login</h2>
+                    <h2 className="mb-4 text-center">Login</h2>
                     <form>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email</label>
