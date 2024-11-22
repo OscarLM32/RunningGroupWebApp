@@ -12,7 +12,7 @@ export default function App (){
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />}/>
-                <Route path="/auth" element={<Authentication />} />
+                <Route path="/auth/*" element={<Authentication />} />
             </Routes>
             <Footer />
         </Router>

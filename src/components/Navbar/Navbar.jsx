@@ -24,8 +24,8 @@ export default function Navbar() {
                     </form>
 
                     <div className="text-end">
-                        <Link to="/auth" type="button" className="btn btn-outline-light me-2 rounded-2">Login</Link>
-                        <Link to="/auth" type="button" className="btn btn-warning rounded-2">Sign-up</Link>
+                        <Link to="/auth/login" type="button" className="btn btn-outline-light me-2 rounded-2">Login</Link>
+                        <Link to="/auth/register" type="button" className="btn btn-warning rounded-2">Sign-up</Link>
                     </div>
                 </div>
             </div>
