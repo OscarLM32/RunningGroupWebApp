@@ -1,16 +1,16 @@
-import "./Login.css"
+import AuthImage from "./Image/AuthImage";
+import "./SharedAuth.css"
 
 function Register() {
     return (
         <div className="auth-page d-flex rounded m-1">
             {/* Left Side: Image */}
             <div className="auth-image-container rounded">
-                <img className='auth-image rounded' src='../../../images/Register-bg.jpg' />
-                <div className="auth-image-overlay"></div>
-                <div className='auth-image-text'>
-                    <h1 className="text-light">Welcome!</h1>
-                    <p className="text-light text-secondary fs-4">Register to begin your journey.</p>
-                </div>
+                <AuthImage 
+                    imageName="Register-bg.jpg"
+                    mainText="Welcome!"
+                    secondaryText="Register to continue begin journey"
+                />
             </div>
 
             <div className='auth-content bg-dark'>

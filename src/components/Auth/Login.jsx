@@ -1,18 +1,17 @@
 import React from 'react';
-import './Login.css'; // For styling
+import './SharedAuth.css'; // For styling
 import { Link } from 'react-router-dom';
+import AuthImage from './Image/AuthImage';
 
 function Login(){
     return (
         <div className="auth-page d-flex rounded m-1">
-            {/* Left Side: Image */}
             <div className="auth-image-container rounded">
-                <img className='auth-image rounded' src='../../../images/Login-bg.jpg' />
-                <div className="auth-image-overlay"></div>
-                <div className='auth-image-text'>
-                    <h1 className="text-light">Welcome Back!</h1>
-                    <p className="text-light text-secondary fs-4">Login to continue your journey.</p>
-                </div>
+                <AuthImage 
+                    imageName = "Login-bg.jpg"
+                    mainText = "Welcome Back!"
+                    secondaryText = "Login to continue your journey"
+                />
             </div>
 
             {/* Right Side: Login Form */}
