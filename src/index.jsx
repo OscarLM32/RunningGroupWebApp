@@ -1,8 +1,12 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./app";
+import App from "./App";
+import { QueryClientProvider } from "react-query";
 
 const root = createRoot(document.getElementById("root"))
+const queryClient = new QueryClient();
 root.render(
-    <App />
+    <QueryClientProvider client={queryClient}>
+           <App />
+    </QueryClientProvider>
 )
