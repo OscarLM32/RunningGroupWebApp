@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AuthImage from "./Image/AuthImage";
 import "./SharedAuth.css"
 import { useRegister } from "../../hooks/useRegister";
+import { useLogin } from '../../hooks/useLogin';
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -9,11 +10,16 @@ function Register() {
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
     const { mutate: registerRequest, isLoading, isError, error} = useRegister();
+    const { mutate: loginRequest} = useLogin();
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        registerRequest({email, password, passwordConfirmation});
+        registerRequest({email, password, passwordConfirmation}, {
+            onSuccess: () => {
+                loginRequest({email, password});
+            }
+        })
     }
 
 

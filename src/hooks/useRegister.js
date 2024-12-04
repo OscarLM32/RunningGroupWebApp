@@ -19,7 +19,6 @@ export const useRegister = () => {
         mutationFn: registerRequest,
         onSuccess: (data) => {
             console.log("Registration successful")
-            
         },
         onError: (error) => {
             console.error('Registration failed:', error);
