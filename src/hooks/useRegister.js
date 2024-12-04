@@ -1,10 +1,12 @@
 import { useMutation } from "react-query";
+import { authenticationEndpoint } from "../services/endpoints";
+import api from "../services/api.js";
 
 const registerEndpoint = authenticationEndpoint + "/register"
 
-const register = async ({ email, password, confirmPassword }) => {
+const registerRequest = async ({ email, password, passwordConfirmation }) => {
     try {
-        const response = await api.post(registerEndpoint, { email, password, confirmPassword });
+        const response = await api.post(registerEndpoint, { email, password, passwordConfirmation });
         return response.data;
     }
     catch (error) {
@@ -14,9 +16,10 @@ const register = async ({ email, password, confirmPassword }) => {
 
 export const useRegister = () => {
     return useMutation({
-        mutationFn: register,
+        mutationFn: registerRequest,
         onSuccess: (data) => {
-
+            console.log("Registration successful")
+            
         },
         onError: (error) => {
             console.error('Registration failed:', error);
