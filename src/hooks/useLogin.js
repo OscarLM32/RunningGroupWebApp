@@ -2,6 +2,7 @@ import { useMutation } from "react-query";
 import { authenticationEndpoint } from "../services/endpoints"
 import api from "../services/api.js"
 import { useNavigate } from "react-router-dom";
+import authEvents from "../utils/authEvents.js";
 
 const loginEndpoint = authenticationEndpoint + "/login"
 
@@ -23,6 +24,7 @@ export const useLogin = () => {
         mutationFn: loginRequest,
         onSuccess: (data) => {
             console.log("Login successful:", data);
+            authEvents.emit("login");
             navigate("/");
         },
         onError: (error) => {

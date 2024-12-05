@@ -1,6 +1,30 @@
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import authEvents from "../../utils/authEvents";
+import { useLogout } from "../../hooks/useLogout";
+import { Button } from "bootstrap";
 
 export default function Navbar() {
+
+    const {mutate: logoutRequest, isLoading} = useLogout();
+
+    const [isLoggedIn, setIsLoggedIn] = useState(!!Cookies.get("jwtToken"));
+
+    useEffect( () => {
+
+        const handleLogin = () => setIsLoggedIn(true);
+        const handleLogout = () => setIsLoggedIn(false);
+
+        authEvents.on("login", handleLogin);
+        authEvents.on("logout", handleLogout);
+
+        return () => {
+            authEvents.off("login", handleLogin);
+            authEvents.off("logout", handleLogout);
+        };
+    })
+
     return (
         <header className="p-2 text-bg-dark rounded-2 m-1">
             <div className="container">
@@ -23,10 +47,19 @@ export default function Navbar() {
                         <input type="search" className="form-control form-control-dark text-bg-dark rounded-2" placeholder="Search..." aria-label="Search" />
                     </form>
 
-                    <div className="text-end">
-                        <Link to="/auth/login" type="button" className="btn btn-outline-light me-2 rounded-2">Login</Link>
-                        <Link to="/auth/register" type="button" className="btn btn-warning rounded-2">Sign-up</Link>
-                    </div>
+                    {!isLoggedIn ?  
+                        (
+                            <div className="text-end">
+                                <Link to="/auth/login" type="button" className="btn btn-outline-light me-2 rounded-2">Login</Link>
+                                <Link to="/auth/register" type="button" className="btn btn-warning rounded-2">Sign-up</Link>
+                            </div>
+                        ) : 
+                        (
+                            <div className="text-end">
+                                <button className="btn btn-outline-light me-2 rounded-2" onClick={() => logoutRequest()} disabled={isLoading}>Logout</button>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </header>
