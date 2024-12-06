@@ -4,13 +4,11 @@ import { authenticationEndpoint } from "../services/endpoints"
 import Cookies from "js-cookie";
 import authEvents from "../utils/authEvents";
 
-const logoutEnpoint = authenticationEndpoint + "/logout";
+const logoutEndpoint = authenticationEndpoint + "/logout";
 
 const logoutRequest = async () =>{
     try{
-        console.log(document.cookie);
-
-        var response = api.post(logoutEnpoint, {}, {
+        var response = api.post(logoutEndpoint, {}, {
             withCredentials:true
         });
         return response.data;
@@ -25,6 +23,7 @@ export const useLogout = () => {
     return useMutation({
         mutationFn: logoutRequest,
         onSuccess: (data)=>{
+            console.log("It worked!")
             Cookies.remove("jwtToken");
             authEvents.emit("logout");
         },
